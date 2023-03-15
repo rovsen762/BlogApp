@@ -16,14 +16,10 @@ class Post(TimeStamp):
 
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
-    author = models.ForeignKey(User,
-                               on_delete=models.CASCADE,
-                               related_name='blog_posts')
+    author = models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
-    status = models.CharField(max_length=2,
-                              choices=Status.choices,
-                              default=Status.DRAFT)
+    status = models.CharField(max_length=2,choices=Status.choices,default=Status.DRAFT)
     objects = models.Manager()
     published = PublishedManager()
 
