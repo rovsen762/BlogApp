@@ -8,6 +8,7 @@ class PublishedManager(models.Manager):
    def get_queryset(self):
        return super().get_queryset() \
            .filter(status=Post.Status.PUBLISHED)
+
 class Post(TimeStamp):
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
@@ -25,7 +26,7 @@ class Post(TimeStamp):
     class Meta:
         ordering = ['-publish']
         indexes = [
-        models.Index(fields=['-publish']),
+            models.Index(fields=['-publish']),
         ]
     def __str__(self):
         return self.title
