@@ -11,7 +11,7 @@
         </p>
         {{ post.body|truncatewords:30|linebreaks }}
     {% endfor %}
-    {% include "pagination.html" with page=posts %}
+    {% include "pagination.html" with page=page_obj %}
 {% endblock %}
 
 
