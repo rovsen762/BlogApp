@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     # 3-rd party apps:
     'django_extensions',
+    'taggit',
 
 ]
 
