@@ -1,0 +1,2 @@
+export DJANGO_SETTINGS_MODULE=config.settings.production
+python3 manage.py runserver

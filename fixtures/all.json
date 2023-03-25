@@ -1,0 +1,43 @@
+[
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "created": "2023-03-23T12:14:24.747Z",
+      "updated": "2023-03-23T12:14:24.747Z",
+      "title": "Markdown",
+      "slug": "markdown",
+      "author": 1,
+      "body": "ssdssdsdssdds",
+      "publish": "2023-03-23T12:14:03Z",
+      "status": "PB"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "created": "2023-03-24T20:56:13.521Z",
+      "updated": "2023-03-24T20:56:13.521Z",
+      "title": "Django Was in Redinhard",
+      "slug": "django-was-in-redinhard",
+      "author": 1,
+      "body": "asdjsadlsalkjdsjldsakjdsajdsalkdajladskjlkadsjdas",
+      "publish": "2023-03-24T20:55:41Z",
+      "status": "PB"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 1,
+    "fields": {
+      "post": 3,
+      "name": "Rosu",
+      "email": "rovshan.mammadli.762@gmail.com",
+      "body": "jjjjhkjjhkh",
+      "created": "2023-03-25T19:01:06.957Z",
+      "updated": "2023-03-25T19:01:06.957Z",
+      "active": true
+    }
+  }
+]
