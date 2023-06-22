@@ -1,19 +1,18 @@
-import os
-
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
+
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog',
-        'USER': 'blog',
-        'PASSWORD': 'blog',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': os.getenv('POSTGRES_DB', 'blog'),
+        'USER': os.getenv('POSTGRES_USER', 'blog'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'blog'),
+        'HOST': os.getenv("DB_HOST", "postgresdb"),
+        'PORT': os.getenv("DB_PORT", "5431"),
     }
 }
 
@@ -24,3 +23,4 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', "")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+

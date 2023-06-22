@@ -1,0 +1,37 @@
+version: "3"
+
+
+services:
+  web:
+    restart: always
+    env_file:
+      - ./project/.env
+    volumes: 
+      - ./project:/project #sinxronlasdirmaq ucun bizim file ile container filesini
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresdb
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      # - postgresdb
+      - web
+    ports:
+      - "80:80"
+    volumes:
+      - ./project/static/:/static
+      - ./project/media/:/media
+
+  postgresdb:
+    image: postgres
+    env_file:
+      - ./project/.env
+    ports:
+      - "5431:5432"
