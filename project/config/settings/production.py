@@ -4,6 +4,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://*.mydomain.com','https://*.127.0.0.1','http://localhost']
+
+
 
 DATABASES = {
     'default': {
@@ -12,7 +15,7 @@ DATABASES = {
         'USER': os.getenv('POSTGRES_USER', 'blog'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'blog'),
         'HOST': os.getenv("DB_HOST", "postgresdb"),
-        'PORT': os.getenv("DB_PORT", "5431"),
+        'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
 

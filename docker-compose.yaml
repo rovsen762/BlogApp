@@ -2,6 +2,15 @@ version: "3"
 
 
 services:
+  postgresdb:
+    image: postgres
+    env_file:
+      - ./project/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    
   web:
     restart: always
     env_file:
@@ -21,7 +30,7 @@ services:
       context: ./docker/nginx
       dockerfile: Dockerfile
     depends_on:
-      # - postgresdb
+      - postgresdb
       - web
     ports:
       - "80:80"
@@ -29,9 +38,3 @@ services:
       - ./project/static/:/static
       - ./project/media/:/media
 
-  postgresdb:
-    image: postgres
-    env_file:
-      - ./project/.env
-    ports:
-      - "5431:5432"
