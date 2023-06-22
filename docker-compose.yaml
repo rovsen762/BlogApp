@@ -7,7 +7,7 @@ services:
     env_file:
       - ./project/.env
     volumes: 
-      - ./project:/project #sinxronlasdirmaq ucun bizim file ile container filesini
+      - ./project:/project
     build:
       context: ./project
       dockerfile: Dockerfile
