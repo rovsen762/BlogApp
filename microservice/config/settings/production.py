@@ -8,6 +8,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.mydomain.com',
     'https://*.127.0.0.1',
     'http://localhost:5001',
+    'http://159.65.125.201:5001',
 
 ]
 
