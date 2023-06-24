@@ -15,7 +15,7 @@ class PageVisitMiddleware:
         timestamp = datetime.now()
         page = request.path
 
-        endpoint = f'http://:{settings.EXTERNAL_SERVICE_IP}/api/pagevisits/'
+        endpoint = f'http://{settings.EXTERNAL_SERVICE_IP}/api/pagevisits/'
         data = {
             'user_ip': user_ip,
             'user_agent': user_agent,
