@@ -1,4 +1,6 @@
+
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Post, Comment
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
@@ -11,6 +13,8 @@ from taggit.models import Tag
 from django.contrib.postgres.search import SearchVector,SearchQuery, SearchRank
 from django.db.models import Count
 from django.contrib.postgres.search import TrigramSimilarity
+
+
 
 def post_list(request, tag_slug=None):
     post_list = Post.published.all()
@@ -36,6 +40,14 @@ def post_list(request, tag_slug=None):
 
 
 def post_detail(request, year, month, day, post):
+
+    # user_ip = request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('HTTP_X_REAL_IP') or request.META.get('REMOTE_ADDR')
+    # user_agent = request.META.get('HTTP_USER_AGENT')
+    # timestamp = datetime.now()
+    # page = 'detail.html'
+
+    
+
     post = get_object_or_404(Post,
                              status=Post.Status.PUBLISHED,
                              slug=post,
@@ -46,6 +58,19 @@ def post_detail(request, year, month, day, post):
     comments = post.comments.filter(active=True)
     # Form for users to comment
     form = CommentForm()
+
+    # endpoint = 'http://127.0.0.1:5000/api/pagevisits/'
+
+    # data = {
+    #     'user_ip': user_ip,
+    #     'user_agent': user_agent,
+    #     'timestamp': timestamp.isoformat(), 
+    #     'page': page,
+    # }
+
+    # res = requests.post(endpoint, data)
+
+
     return render(request, 'detail.html', {'post': post, 'comments': comments, 'form': form})
 
 

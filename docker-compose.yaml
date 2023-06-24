@@ -3,14 +3,16 @@ version: "3"
 
 services:
   postgresdb:
-    image: postgres
     env_file:
       - ./project/.env
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
     ports:
       - "5432:5432"
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
   web:
     restart: always
     env_file:
@@ -25,6 +27,21 @@ services:
     depends_on:
       - postgresdb
 
+  microservice:
+    restart: always
+    env_file:
+      - ./microservice/.env
+    volumes: 
+      - ./microservice:/microservice
+    build:
+      context: ./microservice
+      dockerfile: Dockerfile
+    ports:
+      - '5000:5000'
+    depends_on:
+      - postgresdb
+      - web
+
   nginx:
     build:
       context: ./docker/nginx
@@ -34,6 +51,7 @@ services:
       - web
     ports:
       - "80:80"
+      - "5001:5001"
     volumes:
       - ./project/static/:/static
       - ./project/media/:/media
